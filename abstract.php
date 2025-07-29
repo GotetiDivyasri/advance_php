@@ -9,36 +9,43 @@
 . ex : when we are building a car, then we have some things for sure for every car needs to have.
 */
 abstract class Animal {
-    // Abstract method (no implementation)
-    abstract protected function makeSound();
-
-    // Concrete method
-    public function sleep() {
-        return "Sleeping...";
+    public $theme;
+    public function __construct($theme){
+        $this->theme = $theme;
+        echo "This is ". $theme." data"."<br>";
+    }
+    public abstract function makeSound($sound);
+    protected abstract function livesPlace();
+    public function sleep(){
+        return "Sleeping"."<br>";
     }
 }
-
-class Dog extends Animal {
-    // Implementing the abstract method
-    protected function makeSound() {
-        return "Bark!";
+class Dog extends Animal{
+    protected $dog_sound = "Bow";
+    public function makeSound($sound){
+        return $this->dog_sound = $sound."<br>";
+    }
+    public function livesPlace(){
+        return "Street"."<br>";
     }
 }
-
-class Cat extends Animal {
-    // Implementing the abstract method
-    protected function makeSound() {
-        return "Meow!";
+class Cat extends Animal{
+    protected $sound = "Meow";
+    public function makeSound($sound){
+        return $sound."<br>";
     }
+    public function livesPlace(){
+        return "Street"."<br>";
+    }
+
 }
+$obj1 = new Dog('animals');
+echo $obj1->sleep();
+echo $obj1->makeSound('Boww');
+echo $obj1->livesPlace();
 
-// Usage
-$dog = new Dog();
-echo $dog->makeSound(); // Outputs: Bark!
-echo $dog->sleep();     // Outputs: Sleeping...
-
-$cat = new Cat();
-echo $cat->makeSound(); // Outputs: Meow!
-echo $cat->sleep();     // Outputs: Sleeping...
-
+$obj2 = new Cat('animal');
+echo $obj2->sleep();
+echo $obj2->makeSound('Meoww');
+echo $obj2->livesPlace();
 ?>
