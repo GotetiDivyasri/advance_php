@@ -12,5 +12,33 @@ class democlass{
 	//remaining code.
  }	
 }
+. static methods can be accessed from outside the class using the same class name and scope resolution operator.
+ex: demoClass::demostaticmethod();
 */
+class demoClass{
+	public static $name = 'divya';
+	public static function demoFunction(){
+		echo "This is a demo function in demo class.";
+	}
+	public static function getData(){
+		self::demoFunction();
+	}
+	 
+}
+class childClass extends demoClass{
+	public function getStaticData(){
+		echo demoClass::$name;
+		echo "<br>";
+		parent::demoFunction();
+		// demoClass::demoFunction();
+	}
+}
+$obj = new childClass();
+// echo $obj->getStaticData();
+echo $obj->getData();
+
+//accessing a variable
+// echo demoClass::$name;
+
+// demoClass::demoFunction();
 ?>
